@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "sistemaesteticas",
+=======
+  "name": "centroesteticas-gestia-14-11-26",
+>>>>>>> b0e2e8382966d6686796c3b99839c68493651a75
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,10 +14,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@tailwindcss/vite": "^4.3.5",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "tailwindcss": "^4.3.5"
+=======
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+>>>>>>> b0e2e8382966d6686796c3b99839c68493651a75
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
