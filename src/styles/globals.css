@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #493b50;
+  --color-primary-hover: #5c4b65;
+  --color-primary-light: #efeaf2;
+  --color-secondary: #f0e4d4;
+  --color-background: #faf8f5;
+  --color-surface: #ffffff;
+  --color-border: #e5dfe7;
+  --color-text-primary: #302a34;
+  --color-text-secondary: #716777;
+  --color-error: #c24149;
+
+  --color-nav-burdeos: #591d35;
+  --color-nav-borgona: #823d53;
+  --color-nav-rosa: #d4a5af;
+  --color-nav-champan: #ead9c3;
+  --color-nav-marfil: #faf7f2;
+
+  /* Use fallbacks until valid font files are available in assets/fonts. */
+  --font-sans: "Codec Pro", "Segoe UI", Arial, sans-serif;
+  --font-display: "The Seasons", Georgia, "Times New Roman", serif;
+
+  --radius-button: 0.5rem;
+}
+
+/* Keep the navigation palette scoped to the sidebar and top bar. */
+.navigation-theme {
+  --color-primary: var(--color-nav-burdeos);
+  --color-primary-hover: var(--color-nav-borgona);
+  --color-primary-light: var(--color-nav-champan);
+  --color-secondary: var(--color-nav-champan);
+  --color-background: var(--color-nav-champan);
+  --color-surface: var(--color-nav-marfil);
+  --color-border: var(--color-nav-rosa);
+  --color-text-primary: var(--color-nav-burdeos);
+  --color-text-secondary: var(--color-nav-borgona);
+}
+
+.navigation-theme :focus-visible {
+  outline-color: var(--color-nav-burdeos);
+}
+
+.navigation-sidebar :focus-visible {
+  outline-color: var(--color-nav-rosa);
+}
+
+.navigation-sidebar nav {
+  scrollbar-color: var(--color-nav-rosa) var(--color-nav-burdeos);
+  scrollbar-width: thin;
+}
+
+@layer base {
+  :root {
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+    color-scheme: light;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100dvh;
+  }
+
+  #root {
+    min-height: 100dvh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    color: var(--color-primary);
+    background-color: var(--color-secondary);
+  }
+}
