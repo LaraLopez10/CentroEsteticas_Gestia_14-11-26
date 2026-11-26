@@ -1,19 +1,30 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import AppLayout from "../../components/layouts/AppLayout";
 import PaginaModulo from "../../components/shared/PaginaModulo";
 import EncabezadoModulo from "../../components/shared/EncabezadoModulo";
 import UIKitPages from "../../features/desing-system/pages/UIKitPages";
+import AgendaTurnosPage from "../../features/AgendaTurnos/pages/AgendaTurnosPage";
+import AgendaPage from "../../features/AgendaTurnos/pages/AgendaPage";
+import TurnosPage from "../../features/AgendaTurnos/pages/TurnosPage";
+import DisponibilidadPage from "../../features/AgendaTurnos/pages/DisponibilidadPage";
+import ConfiguracionTurnosPage from "../../features/AgendaTurnos/pages/ConfiguracionTurnosPage";
+import {
+  AGENDA_TURNOS_BASE_PATH,
+  AGENDA_TURNOS_SECCIONES,
+} from "../../features/AgendaTurnos/constants/agenda.constants";
+
+const agendaTurnosPages = {
+  agenda: AgendaPage,
+  listado: TurnosPage,
+  disponibilidad: DisponibilidadPage,
+  configuracion: ConfiguracionTurnosPage,
+};
 
 const routes = [
   {
     path: "/",
     title: "Inicio",
     description: "Resumen general de tu centro estético.",
-  },
-  {
-    path: "/turnos",
-    title: "Agenda y turnos",
-    description: "Administrá las reservas y los turnos.",
   },
   {
     path: "/clientes",
@@ -76,6 +87,18 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<AppLayout />}>
+        <Route path={AGENDA_TURNOS_BASE_PATH} element={<AgendaTurnosPage />}>
+          <Route index element={<Navigate to="agenda" replace />} />
+          {AGENDA_TURNOS_SECCIONES.map(({ id }) => {
+            const Page = agendaTurnosPages[id];
+
+            return <Route key={id} path={id} element={<Page />} />;
+          })}
+          <Route
+            path="*"
+            element={<Navigate to={`${AGENDA_TURNOS_BASE_PATH}/agenda`} replace />}
+          />
+        </Route>
         {routes.map(({ path, title, description }) => (
           <Route
             key={path}
