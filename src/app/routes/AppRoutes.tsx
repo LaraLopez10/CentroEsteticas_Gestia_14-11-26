@@ -10,6 +10,15 @@ import DisponibilidadPage from "../../features/AgendaTurnos/pages/Disponibilidad
 import ConfiguracionTurnosPage from "../../features/AgendaTurnos/pages/ConfiguracionTurnosPage";
 import LoginPage from "../../features/auth/pages/LoginPage";
 import {
+  ClientesPage,
+  ListadoClientesPage,
+  FormClientePage,
+  SeccionClientesPage,
+  CLIENTES_BASE_PATH,
+  CLIENTES_RUTAS,
+  CLIENTES_SECCIONES_PERFIL,
+} from "../../features/clientes";
+import {
   AGENDA_TURNOS_BASE_PATH,
   AGENDA_TURNOS_SECCIONES,
 } from "../../features/AgendaTurnos/constants/agenda.constants";
@@ -23,14 +32,9 @@ const agendaTurnosPages = {
 
 const routes = [
   {
-    path: "/",
+    path: "/inicio",
     title: "Inicio",
     description: "Resumen general de tu centro estético.",
-  },
-  {
-    path: "/clientes",
-    title: "Clientes",
-    description: "Gestioná la información de tus clientes.",
   },
   {
     path: "/servicios",
@@ -87,7 +91,39 @@ const routes = [
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<AppLayout />}>
+      <Route element={<AppLayout />}>
+        <Route path={CLIENTES_BASE_PATH} element={<ClientesPage />}>
+          <Route index element={<ListadoClientesPage />} />
+          <Route path={CLIENTES_RUTAS.nuevo} element={<FormClientePage modo="crear" />} />
+          <Route
+            path={CLIENTES_RUTAS.cumpleanos}
+            element={
+              <SeccionClientesPage
+                title="Cumpleaños"
+                description="Cumpleaños de los clientes del establecimiento."
+              />
+            }
+          />
+          <Route path={CLIENTES_RUTAS.cliente}>
+            <Route path={CLIENTES_RUTAS.editar} element={<FormClientePage modo="editar" />} />
+            {CLIENTES_SECCIONES_PERFIL.map(({ path, title, description }) => (
+              path === "" ? (
+                <Route
+                  key="perfil"
+                  index
+                  element={<SeccionClientesPage title={title} description={description} />}
+                />
+              ) : (
+                <Route
+                  key={path}
+                  path={path}
+                  element={<SeccionClientesPage title={title} description={description} />}
+                />
+              )
+            ))}
+          </Route>
+          <Route path="*" element={<Navigate to={CLIENTES_BASE_PATH} replace />} />
+        </Route>
         <Route path={AGENDA_TURNOS_BASE_PATH} element={<AgendaTurnosPage />}>
           <Route index element={<Navigate to="agenda" replace />} />
           {AGENDA_TURNOS_SECCIONES.map(({ id }) => {

@@ -22,7 +22,7 @@ const navigation = [
   {
     title: "General",
     items: [
-      { label: "Inicio", icon: LayoutDashboard, to: "/" },
+      { label: "Inicio", icon: LayoutDashboard, to: "/inicio" },
       { label: "Agenda y turnos", icon: CalendarDays, to: "/turnos" },
       { label: "Clientes", icon: Users, to: "/clientes" },
       { label: "Servicios", icon: Sparkles, to: "/servicios" },
