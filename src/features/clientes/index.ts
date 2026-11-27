@@ -11,6 +11,7 @@ export type {
   ClienteId,
   CentroEsteticaId,
   ReferenciaCliente,
+  ContextoCliente,
   Cliente,
   CrearClienteRequest,
   ActualizarClienteRequest,
