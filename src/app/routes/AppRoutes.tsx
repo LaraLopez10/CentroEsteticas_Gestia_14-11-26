@@ -8,6 +8,7 @@ import AgendaPage from "../../features/AgendaTurnos/pages/AgendaPage";
 import TurnosPage from "../../features/AgendaTurnos/pages/TurnosPage";
 import DisponibilidadPage from "../../features/AgendaTurnos/pages/DisponibilidadPage";
 import ConfiguracionTurnosPage from "../../features/AgendaTurnos/pages/ConfiguracionTurnosPage";
+import LoginPage from "../../features/auth/pages/LoginPage";
 import {
   AGENDA_TURNOS_BASE_PATH,
   AGENDA_TURNOS_SECCIONES,
@@ -96,7 +97,9 @@ export default function AppRoutes() {
           })}
           <Route
             path="*"
-            element={<Navigate to={`${AGENDA_TURNOS_BASE_PATH}/agenda`} replace />}
+            element={
+              <Navigate to={`${AGENDA_TURNOS_BASE_PATH}/agenda`} replace />
+            }
           />
         </Route>
         {routes.map(({ path, title, description }) => (
@@ -111,6 +114,8 @@ export default function AppRoutes() {
           />
         ))}
       </Route>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/ui-kit" element={<UIKitPages />} />
     </Routes>
   );
